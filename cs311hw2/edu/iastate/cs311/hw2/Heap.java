@@ -118,7 +118,7 @@ public class Heap<E extends Comparable<? super E>>
   public  E getLastInternal()
   {
     if(list.size()<2) throw new NoSuchElementException();
-    list.get((list.size()-2)/2);
+    return list.get((list.size()-2)/2);
   }
 
   public E removeMin()
@@ -154,6 +154,8 @@ public class Heap<E extends Comparable<? super E>>
     if ( start < 0 || start >= list.size() )
       throw new RuntimeException("start < 0 or >= n");
     //TODO
+    //while(start > children)
+      //swap with smaller child
   }
 
   // Shows the tree used to implement the heap with the root element at the leftmost column
