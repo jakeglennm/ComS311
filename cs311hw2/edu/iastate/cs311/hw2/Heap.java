@@ -43,6 +43,8 @@ public class Heap<E extends Comparable<? super E>>
   // For 0 <= k < list.size(), list.get(k) returns the element at position k of list
   // list.remove( list.size() - 1 ) removes the last element from the list;
   // note that there is no need to remove any element before the last element.
+  //left child of a parent at index j is 2j + 1
+  //the right child is 2j + 2.
 
   public Heap()
   {
@@ -92,6 +94,7 @@ public class Heap<E extends Comparable<? super E>>
 
   // TODO: O(log n)
   // Moves the last element up to the proper place so that the heap property holds.
+
   private void percolateUp()
   {
     //TODO
@@ -153,9 +156,21 @@ public class Heap<E extends Comparable<? super E>>
   {
     if ( start < 0 || start >= list.size() )
       throw new RuntimeException("start < 0 or >= n");
-    //TODO
-    //while(start > children)
+    E parent = list.get(start);
+    E left_child = list.get(2*start + 1);
+    E right_child = list.get(2*start + 2);
+    while((parent.compareTo(left_child) > 0)||(parent.compareTo(right_child) > 0))
+    {
       //swap with smaller child
+      if(left_child.compareTo(right_child)<0)
+      {
+        swap(start,2*start + 1); //swap parent with smaller child
+      }
+      else
+      {
+        swap(start,2*start + 2); //swap parent with smaller child
+      }
+    }
   }
 
   // Shows the tree used to implement the heap with the root element at the leftmost column
