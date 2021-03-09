@@ -117,7 +117,8 @@ public class Heap<E extends Comparable<? super E>>
   // If the size of the heap is less than 2, it throws new NoSuchElementException().
   public  E getLastInternal()
   {
-    //TODO
+    if(list.size()<2) throw new NoSuchElementException();
+    list.get((list.size()-2)/2);
   }
 
   public E removeMin()
@@ -137,7 +138,13 @@ public class Heap<E extends Comparable<? super E>>
   // If the size of the heap is less than 2, it throws new NoSuchElementException().
   public void trimEveryLeaf()
   {
-    //TODO
+    if(list.size()<2) throw new NoSuchElementException();
+    int j = list.size() - (list.size()/2); //number of leaves to remove
+    for (int i = j; i > 0; i--)
+    {
+      list.remove(list.size() - 1);
+    }
+
   }
 
   // TODO: O(log n)
