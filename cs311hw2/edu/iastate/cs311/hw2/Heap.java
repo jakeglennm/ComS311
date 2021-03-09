@@ -97,7 +97,18 @@ public class Heap<E extends Comparable<? super E>>
 
   private void percolateUp()
   {
-    //TODO
+    //check if parent is greater than last element, if so, swap
+    //(j-1)/2 is index of parent of a node at index j
+
+    int child_index = list.size()-1;
+    int parent_index = (child_index-1)/2;
+    E last = list.get(child_index);
+    while(last.compareTo(list.get(parent_index))<0)
+    {
+      swap(parent_index,child_index);
+      child_index = parent_index; //update indexes
+      parent_index = (parent_index-1)/2; //update indexes
+    }
   }
 
   // Swaps the elements at the parent and child indexes.
@@ -156,22 +167,37 @@ public class Heap<E extends Comparable<? super E>>
   {
     if ( start < 0 || start >= list.size() )
       throw new RuntimeException("start < 0 or >= n");
-    E parent = list.get(start);
-    E left_child = list.get(2*start + 1);
-    E right_child = list.get(2*start + 2);
-    while((parent.compareTo(left_child) > 0)||(parent.compareTo(right_child) > 0))
-    {
-      //swap with smaller child
-      if(left_child.compareTo(right_child)<0)
+    //E parent = list.get(start);
+    //E left_child = list.get(2*start + 1);
+    //E right_child = list.get(2*start + 2);
+    boolean cond = start*2 + 1 >= size();
+      while(!cond)
       {
-        swap(start,2*start + 1); //swap parent with smaller child
-      }
-      else
-      {
-        swap(start,2*start + 2); //swap parent with smaller child
+        if(start*2 + 2 >= size())
+        {
+          if(list.get(start).compareTo(list.get(2*start+1))>0) swap(start,2*start +1);
+          else break;
+        }
+        else
+        {
+          if((list.get(start).compareTo(list.get(2 * start + 1)) > 0) || (list.get(start).compareTo(list.get(2 * start + 2)) > 0))
+          {
+            if (list.get(2 * start + 1).compareTo(list.get(2 * start + 2)) < 0)
+            {
+              swap(start, 2 * start + 1); //swap parent with smaller child
+            }
+            else {
+              swap(start, 2 * start + 2); //swap parent with smaller child
+            }
+          }
+          else
+            {
+              break;
+            }
+        }
       }
     }
-  }
+
 
   // Shows the tree used to implement the heap with the root element at the leftmost column
   // and with 'null' indicating no left or right child.
