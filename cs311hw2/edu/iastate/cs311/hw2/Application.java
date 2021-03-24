@@ -1,7 +1,7 @@
 package edu.iastate.cs311.hw2;
 
 /**
- * @author
+ * @author Jake Martin
  *
  * This code template is prepared by Xiaoqiu Huang
  * You are welcome to add your own code for testing.
@@ -25,8 +25,11 @@ public class Application
      pq.add(30);
      pq.add(40);
      pq.add(35);
+     pq.add(1);
      pq.add(50);
      pq.add(10);
+     pq.add(5);
+     pq.add(3);
      pq.showHeap();
      System.out.println( pq.getLastInternal() );
      pq.trimEveryLeaf();

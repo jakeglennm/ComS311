@@ -1,7 +1,7 @@
 package edu.iastate.cs311.hw2;
 
 /**
- * @author 
+ * @author Jake Martin
  *  A simple priority queue interface and a class template implementing
  *  the interface with a heap and a heap sort algorithm. This code template is
  *  written by Xiaoqiu Huang for Com S 311 in Spring 2021.
@@ -170,8 +170,8 @@ public class Heap<E extends Comparable<? super E>>
     //E parent = list.get(start);
     //E left_child = list.get(2*start + 1);
     //E right_child = list.get(2*start + 2);
-    boolean cond = start*2 + 1 >= size();
-      while(!cond)
+    boolean hasChild = !(start*2 + 1 >= size());
+      while(hasChild)
       {
         if(start*2 + 2 >= size())
         {
